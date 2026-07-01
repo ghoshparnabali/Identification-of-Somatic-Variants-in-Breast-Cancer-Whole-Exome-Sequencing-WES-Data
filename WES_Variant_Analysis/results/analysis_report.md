@@ -1,9 +1,9 @@
 # Tumour-Only Somatic Analysis — Candidate Variant Report
 
-**Dataset:** SRP676624 / PRJNA1422845 (TNBC whole-exome, tumour-only)
-**Samples:** 3
-**Reference subset:** chr13, chr17
-**Annotation:** snpEff (GRCh38.86)
+- **Dataset:** SRP676624 / PRJNA1422845 (TNBC whole-exome, tumour-only)
+- **Samples:** 3
+- **Reference subset:** chr13, chr17
+- **Annotation:** snpEff (GRCh38.86)
 
 _Candidates are candidate somatic variants: the tumour-only design cannot exclude rare germline variants without a matched normal._
 
