@@ -98,7 +98,7 @@ pip -q install cutadapt multiqc
 
 1. Clone this repository:
    ```
-   git clone https://github.com/ghoshparnabali/WES_Variant_Analysis
+   git clone https://github.com/ghoshparnabali/Identification-of-Somatic-Variants-in-Breast-Cancer-Whole-Exome-Sequencing-WES-Data.git
    ```
 2. Open `WES_Variant_Analysis/code/WES_Variant_Analysis.ipynb` in Google Colab (or a Jupyter environment with an Ubuntu backend).
 3. Run the notebook cells from top to bottom. The pipeline will, in order: install the required tools, build and index the chr13 + chr17 reference, download and subset the GATK resource bundles, retrieve the three tumour exomes from SRA, and run quality control, trimming, alignment, duplicate marking, BQSR, Mutect2 tumour-only calling, contamination and orientation-bias filtering, snpEff annotation, and variant prioritisation.
