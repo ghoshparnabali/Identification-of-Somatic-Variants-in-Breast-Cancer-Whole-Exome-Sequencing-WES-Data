@@ -1,4 +1,4 @@
-# Identification of Somatic Variants in Breast Cancer Whole-Exome Sequencing (WES) Data
+# Tumour-Only Somatic Variant Calling in Triple-Negative Breast Cancer Whole-Exome Sequencing
 This repository contains an end-to-end **tumour-only somatic variant-calling pipeline** built in Python (Jupyter / Google Colab) with Visual Studio Code to identify candidate somatic mutations in **triple-negative breast cancer (TNBC)** from whole-exome sequencing data. Using tumour exomes from the 2026 proteogenomic study [PRJNA1422845](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1422845) (SRA study [SRP676624](https://www.ncbi.nlm.nih.gov/Traces/study/?acc=SRP676624&o=acc_s%3Aa)), conducted by Yonsei Cancer Center, Yonsei University College of Medicine, the pipeline follows the GATK Best Practices workflow for somatic short-variant discovery — BWA-MEM alignment, duplicate marking, base-quality recalibration, and Mutect2 tumour-only calling with a germline resource, panel of normals, and orientation-bias modelling — followed by snpEff functional annotation and prioritisation against a hereditary breast-cancer gene panel. The reference genome is subset to chromosomes 13 and 17 to focus the analysis on **BRCA2, BRCA1, and TP53** while remaining computationally feasible on a Colab CPU runtime.
 
 ---
@@ -40,7 +40,7 @@ This project involved assembling a complete somatic short-variant workflow — f
 ## Repository Structure
 
 ```
-Identification-of-Somatic-Variants-in-Breast-Cancer-Whole-Exome-Sequencing-Data/
+Tumour-Only-Somatic-Variant-Calling-in-Triple-Negative-Breast-Cancer-Whole-Exome-Sequencing/
 ├── WES_Variant_Analysis/
 │   ├── code/
 │   │   └── WES_Variant_Analysis.ipynb
@@ -66,7 +66,7 @@ The analysis uses three tumour whole-exome samples from NCBI BioProject [PRJNA14
 | Sample_2 | SRR37211334 |
 | Sample_3 | SRR37211335 |
 
-The selection was influenced by the practicalities of minimizing download and compute cost on the Colab runtime. As tumour exomes from the same study, sequencing platform, and library preparation, they are technically equivalent, so this selection reduces resource requirements without introducing biological bias.
+The selection of runs was influenced by the practicalities of minimizing download and compute cost on the Colab runtime. As tumour exomes from the same study, sequencing platform, and library preparation, they are technically equivalent, so this selection reduces resource requirements without introducing biological bias.
 
 Raw sequencing data (FASTQ), aligned BAM files, the reference genome, and the GATK resource bundles are **not** included in this repository due to their size; they are downloaded and generated automatically when the notebook is run. The pipeline retrieves the raw reads directly from SRA using the accessions above.
 
@@ -104,7 +104,7 @@ pip -q install cutadapt multiqc
 
 ## How to Reproduce
 
-1. Clone this repository: [https://github.com/ghoshparnabali/Identification-of-Somatic-Variants-in-Breast-Cancer-Whole-Exome-Sequencing-Data](https://github.com/ghoshparnabali/Identification-of-Somatic-Variants-in-Breast-Cancer-Whole-Exome-Sequencing-Data)
+1. Clone this repository: [https://github.com/ghoshparnabali/Tumour-Only-Somatic-Variant-Calling-in-Triple-Negative-Breast-Cancer-Whole-Exome-Sequencing](https://github.com/ghoshparnabali/Tumour-Only-Somatic-Variant-Calling-in-Triple-Negative-Breast-Cancer-Whole-Exome-Sequencing)
 2. Open `WES_Variant_Analysis/code/WES_Variant_Analysis.ipynb` in Google Colab (or a Jupyter environment with an Ubuntu backend).
 3. Run the notebook cells from top to bottom. The pipeline will, in order: install the required tools, build and index the chr13 + chr17 reference, download and subset the GATK resource bundles, retrieve the three tumour exomes from SRA, and run quality control, trimming, alignment, duplicate marking, BQSR, Mutect2 tumour-only calling, contamination and orientation-bias filtering, snpEff annotation, and variant prioritisation.
 4. Outputs are written to the working directory: quality-control reports, the annotated and filtered VCFs, the prioritised candidate list (`candidate_somatic_variants.csv`), and a summary report (`analysis_report.md`).
